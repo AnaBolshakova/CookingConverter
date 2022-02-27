@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">CookingConverter 2.0</string>
+    <string name="welcome_to_cooking_converter">Welcome to Cooking Converter!</string>
+    <string name="please_do_that">Please, type in the name of the product or choose it from the list</string>
+    <string name="product_name">Product name</string>
+    <string name="measurement_value">Measurement value</string>
+    <string name="quantity">Quantity</string>
+    <string name="measurement_unit">Measurement unit</string>
+    <string name="convert_into">Convert into</string>
+    <string name="conversion_unit">Conversion unit</string>
+    <string name="round_up">Round up result?</string>
+    <string name="convert_button">Convert</string>
+    <string name="amount_in_unit">Amount in the chosen unit: %s</string>
+    <string name="input_quantity">Please, input the quantity</string>
+    <string name="input_units">Please, choose the product, measurement and conversion units</string>
+    <string name="enter_input">Please enter the necessary input!</string>
+</resources>
