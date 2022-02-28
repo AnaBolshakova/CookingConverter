@@ -1,9 +1,7 @@
 <resources>
     <string name="app_name">CookingConverter 2.0</string>
-    <string name="welcome_to_cooking_converter">Welcome to Cooking Converter!</string>
     <string name="please_do_that">Please, type in the name of the product or choose it from the list</string>
     <string name="product_name">Product name</string>
-    <string name="measurement_value">Measurement value</string>
     <string name="quantity">Quantity</string>
     <string name="measurement_unit">Measurement unit</string>
     <string name="convert_into">Convert into</string>

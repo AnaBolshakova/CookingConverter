@@ -1,5 +1,6 @@
 package com.example.cookingconverter20
 
+
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
@@ -37,7 +38,6 @@ class MainActivity : AppCompatActivity() {
             android.R.layout.simple_dropdown_item_1line,
             productList.map { product -> product.name }
         )
-
         binding.productName.setAdapter(productAdapter)
 
         val measurementUnitAdapter = ArrayAdapter(
@@ -99,5 +99,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.resultText.text = getString(R.string.amount_in_unit, result.toString())
+
     }
 }
+
