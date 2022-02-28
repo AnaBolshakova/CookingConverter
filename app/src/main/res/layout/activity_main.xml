@@ -1,74 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-    <TextView
-        android:id="@+id/welcome_to_cooking_converter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:text="@string/welcome_to_cooking_converter"
-        android:textSize="25sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/please_do_that"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
         android:layout_marginTop="10dp"
         android:text="@string/please_do_that"
-        android:textSize="20sp"
+        android:textSize="19sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/welcome_to_cooking_converter" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <AutoCompleteTextView
-        android:id="@+id/product_name"
+    <ImageView
+        android:id="@+id/icon_product_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:importantForAccessibility="no"
+        app:layout_constraintBottom_toBottomOf="@id/product_name_widget"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/product_name_widget"
+        app:srcCompat="@drawable/ic_product_name" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/product_name_widget"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:completionThreshold="1"
         android:hint="@string/product_name"
-        android:minHeight="48dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/please_do_that" />
+        app:layout_constraintStart_toEndOf="@id/icon_product_name"
+        app:layout_constraintTop_toBottomOf="@id/please_do_that">
 
-    <TextView
-        android:id="@+id/measurement_value"
+        <AutoCompleteTextView
+            android:id="@+id/product_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textAutoComplete" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <ImageView
+        android:id="@+id/icon_measurement_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="@string/measurement_value"
-        android:textSize="24sp"
+        android:layout_marginStart="10dp"
+        android:importantForAccessibility="no"
+        app:layout_constraintBottom_toBottomOf="@id/quantity_widget"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/product_name" />
+        app:layout_constraintTop_toTopOf="@id/quantity_widget"
+        app:srcCompat="@drawable/ic_measurement_value" />
 
-    <EditText
-        android:id="@+id/quantity"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/quantity_widget"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:autofillHints=""
         android:hint="@string/quantity"
         android:inputType="numberDecimal"
-        android:minHeight="48dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/measurement_value" />
+        app:layout_constraintStart_toEndOf="@id/icon_measurement_value"
+        app:layout_constraintTop_toBottomOf="@id/product_name_widget">
 
-    <AutoCompleteTextView
-        android:id="@+id/measurement_unit"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/quantity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/measurement_unit_widget"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginTop="8dp"
         android:completionThreshold="1"
         android:hint="@string/measurement_unit"
-        android:minHeight="48dp"
-        app:layout_constraintStart_toEndOf="@id/quantity"
-        app:layout_constraintTop_toBottomOf="@id/measurement_value" />
+        app:layout_constraintStart_toEndOf="@id/quantity_widget"
+        app:layout_constraintTop_toBottomOf="@id/product_name_widget">
+
+        <AutoCompleteTextView
+            android:id="@+id/measurement_unit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textAutoComplete" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/convert_into"
@@ -76,37 +103,59 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="@string/convert_into"
-        android:textSize="20sp"
+        android:textSize="19sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/quantity" />
+        app:layout_constraintTop_toBottomOf="@id/quantity_widget" />
 
-    <AutoCompleteTextView
-        android:id="@+id/conversion_unit"
+    <ImageView
+        android:id="@+id/icon_convert_into"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:importantForAccessibility="no"
+        app:layout_constraintBottom_toBottomOf="@id/conversion_unit_widget"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/conversion_unit_widget"
+        app:srcCompat="@drawable/ic_convert_into" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/conversion_unit_widget"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:completionThreshold="1"
         android:hint="@string/conversion_unit"
         android:minHeight="48dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/convert_into"
-        tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
+        app:layout_constraintStart_toEndOf="@id/icon_convert_into"
+        app:layout_constraintTop_toBottomOf="@id/convert_into">
 
-    <Switch
+        <AutoCompleteTextView
+            android:id="@+id/conversion_unit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textAutoComplete" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
         android:id="@+id/round_up"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
         android:layout_marginTop="10dp"
         android:checked="true"
         android:text="@string/round_up"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/conversion_unit" />
+        app:layout_constraintTop_toBottomOf="@id/conversion_unit_widget" />
 
     <Button
         android:id="@+id/convert_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="15dp"
         android:layout_marginTop="10dp"
         android:text="@string/convert_button"
         app:layout_constraintStart_toStartOf="parent"
@@ -117,6 +166,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/convert_button" />
 
