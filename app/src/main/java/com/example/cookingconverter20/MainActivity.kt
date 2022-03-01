@@ -16,14 +16,51 @@ class MainActivity : AppCompatActivity() {
         Product("Olive oil", 940.0),
         Product("Flour", 700.0),
         Product("Sugar", 900.0),
-        Product("Salt", 1200.0)
+        Product("Salt", 690.0),
+        Product("Vodka", 940.0),
+        Product("Peas", 920.0),
+        Product("Cocoa powder", 650.0),
+        Product("Kefir", 1030.0),
+        Product("Coffee cereal", 430.0),
+        Product("Corn", 720.0),
+        Product("Mayonnaise", 940.0),
+        Product("Sunflower oil", 960.0),
+        Product("Melted butter", 910.0),
+        Product("Honey", 1500.0),
+        Product("Almond", 640.0),
+        Product("Condensed milk", 1300.0),
+        Product("Beer", 1030.0),
+        Product("Sugar powder", 760.0),
+        Product("Sour creme", 1050.0),
+        Product("Tomato paste", 1080.0),
+        Product("Essence", 1000.0),
+        Product("Beans", 840.0),
+        Product("Jam", 1330.0),
+        Product("Cherry", 800.0),
+        Product("Rice", 780.0),
+        Product("Strawberry", 600.0),
+        Product("Coconut sprinkle", 350.0),
+        Product("Raisin", 760.0),
+        Product("Buckwheat", 710.0),
+        Product("Semolina", 800.0),
+        Product("Pearl barley", 910.0),
+        Product("Millet", 840.0),
+        Product("Wheat", 280.0),
+        Product("Sunflower seed", 360.0),
+        Product("Soda", 690.0),
+        Product("Blueberry", 720.0),
+        Product("Chips", 90.0)
     )
-
+    // add the name of the unit in result
     private val unitsList = listOf(
         Unit("Liter", 1.0, "vol"),
         Unit("Milliliter", 0.001, "vol"),
         Unit("Kilogram", 1000.0, "wei"),
-        Unit("Gram", 1.0, "wei")
+        Unit("200 ml glass", 0.2, "vol"),
+        Unit("Tablespoon", 0.018, "vol"),
+        Unit("Teaspoon", 0.005, "vol"),
+        Unit("Pound", 453.592, "wei"),
+        Unit("Ounce", 28.3495, "wei")
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
