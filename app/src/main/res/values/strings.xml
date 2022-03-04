@@ -8,8 +8,11 @@
     <string name="conversion_unit">Conversion unit</string>
     <string name="round_up">Round up result?</string>
     <string name="convert_button">Convert</string>
-    <string name="amount_in_unit">Amount in the chosen unit: %s</string>
+    <string name="amount_in_unit">Amount in the chosen unit: %1$s %2$s </string>
     <string name="input_quantity">Please, input the quantity</string>
     <string name="input_units">Please, choose the product, measurement and conversion units</string>
     <string name="enter_input">Please enter the necessary input!</string>
+    <string name="weight">Weight</string>
+    <string name="volume">Volume</string>
+    <string name="measurement_value">Measurement value</string>
 </resources>

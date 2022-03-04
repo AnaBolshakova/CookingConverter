@@ -12,5 +12,10 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <!-- For switches. -->
+        <item name="switchStyle">@style/Widget.CookingConverter.CompoundButton.Switch</item>
+        <!-- For text input fields. -->
+        <item name="textInputStyle">@style/Widget.MaterialComponents.TextInputLayout.FilledBox
+        </item>
     </style>
 </resources>

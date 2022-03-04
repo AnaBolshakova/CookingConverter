@@ -1,10 +1,15 @@
 package com.example.cookingconverter20
 
 
+import android.content.Context
 import android.os.Bundle
+import android.view.MotionEvent
+import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import com.example.cookingconverter20.databinding.ActivityMainBinding
+import kotlin.math.round
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -51,17 +56,20 @@ class MainActivity : AppCompatActivity() {
         Product("Blueberry", 720.0),
         Product("Chips", 90.0)
     )
+
     // add the name of the unit in result
-    private val unitsList = listOf(
-        Unit("Liter", 1.0, "vol"),
-        Unit("Milliliter", 0.001, "vol"),
-        Unit("Kilogram", 1000.0, "wei"),
-        Unit("200 ml glass", 0.2, "vol"),
-        Unit("Tablespoon", 0.018, "vol"),
-        Unit("Teaspoon", 0.005, "vol"),
-        Unit("Pound", 453.592, "wei"),
-        Unit("Ounce", 28.3495, "wei")
+    private val unitList = listOf(
+        Unit("Liter", 1.0, "vol", "l"),
+        Unit("Milliliter", 0.001, "vol", "ml"),
+        Unit("Kilogram", 1000.0, "wei", "kg"),
+        Unit("200 ml glass", 0.2, "vol", "gl"),
+        Unit("Tablespoon", 0.018, "vol", "tablespoons"),
+        Unit("Teaspoon", 0.005, "vol", "teaspoons"),
+        Unit("Pound", 453.592, "wei", "lb"),
+        Unit("Ounce", 28.3495, "wei", "ounce"),
+        Unit("Gram", 1.0, "wei", "gr")
     )
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -77,21 +85,51 @@ class MainActivity : AppCompatActivity() {
         )
         binding.productName.setAdapter(productAdapter)
 
-        val measurementUnitAdapter = ArrayAdapter(
-            this,
-            android.R.layout.simple_dropdown_item_1line,
-            unitsList.map { unit -> unit.name }
-        )
-
-        binding.measurementUnit.setAdapter(measurementUnitAdapter)
-
         val conversionUnitAdapter = ArrayAdapter(
             this,
             android.R.layout.simple_dropdown_item_1line,
-            unitsList.map { unit -> unit.name }
+            unitList.map { unit -> unit.name }
         )
 
         binding.conversionUnit.setAdapter(conversionUnitAdapter)
+
+        val measurementUnitAdapter = ArrayAdapter(
+            this,
+            android.R.layout.simple_dropdown_item_1line,
+            unitList.map { unit -> unit.name }
+        )
+        binding.measurementUnit.setAdapter(measurementUnitAdapter)
+
+        binding.measurementValueOptions.setOnCheckedChangeListener { _, _ ->
+            when (binding.measurementValueOptions.checkedRadioButtonId) {
+                R.id.weight_option -> {
+                    val weightUnits = unitList.filter { it.unitType == "wei" }
+                    val measurementUnitAdapter = ArrayAdapter(
+                        this,
+                        android.R.layout.simple_dropdown_item_1line,
+                        weightUnits.map { unit -> unit.name }
+                    )
+                    binding.measurementUnit.setAdapter(measurementUnitAdapter)
+                }
+                R.id.volume_option -> {
+                    val volumeUnits = unitList.filter { it.unitType == "vol" }
+                    val measurementUnitAdapter = ArrayAdapter(
+                        this,
+                        android.R.layout.simple_dropdown_item_1line,
+                        volumeUnits.map { unit -> unit.name }
+                    )
+                    binding.measurementUnit.setAdapter(measurementUnitAdapter)
+                }
+            }
+        }
+    }
+
+    override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
+        if (currentFocus != null) {
+            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(currentFocus!!.windowToken, 0)
+        }
+        return super.dispatchTouchEvent(ev)
     }
 
     private fun calculateResult() {
@@ -100,8 +138,9 @@ class MainActivity : AppCompatActivity() {
         val stringUnitTo = binding.conversionUnit.text.toString()
         val stringQuantity = binding.quantity.text.toString()
 
-        val unitFrom = unitsList.find { it.name == stringUnitFrom }
-        val unitTo = unitsList.find { it.name == stringUnitTo }
+        val unitInResult = unitList.find { it.name == stringUnitTo }
+        val unitFrom = unitList.find { it.name == stringUnitFrom }
+        val unitTo = unitList.find { it.name == stringUnitTo }
         val chosenProduct = productList.find { it.name == stringChosenProduct }
         val quantity = stringQuantity.toDoubleOrNull()
         var result: Double
@@ -132,11 +171,17 @@ class MainActivity : AppCompatActivity() {
 
 
         if (binding.roundUp.isChecked) {
-            result = kotlin.math.ceil(result)
+            result = round(result * 10.0) / 10.0
         }
 
-        binding.resultText.text = getString(R.string.amount_in_unit, result.toString())
-
+        binding.resultText.text =
+            getString(
+                R.string.amount_in_unit,
+                result.toString(),
+                unitInResult?.unitInResult.toString()
+            )
     }
+
 }
+
 

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="padding_margin_Horizontal">10dp</dimen>
+    <dimen name="min_text_height">48dp</dimen>
+    <dimen name="margin_between_sections">15dp</dimen>
+    <dimen name="icon_margin_text">16dp</dimen>
+
+</resources>
